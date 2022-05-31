@@ -1,15 +1,42 @@
-import 'package:flutter/cupertino.dart';
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:tinda/components/navigation_bar.dart';
-import 'package:tinda/main.dart';
-import 'package:tinda/ui/profileUI.dart';
+import 'package:tinda/ui/signup.dart';
 import 'package:tinda/ui/textfield_type.dart';
+import 'ui/logo.dart';
+import 'ui/profileUI.dart';
 
-import 'logo.dart';
+void main() {
+  runApp(const MyApp());
+}
 
-class SignUp extends StatelessWidget {
-  const SignUp({Key? key}) : super(key: key);
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
 
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      theme: ThemeData(
+        primarySwatch: Colors.purple,
+      ),
+      home: const SignIn(title: ''),
+    );
+  }
+}
+
+class SignIn extends StatefulWidget {
+  const SignIn({Key? key, required this.title}) : super(key: key);
+
+  final String title;
+
+  @override
+  State<SignIn> createState() => _SignInState();
+}
+
+class _SignInState extends State<SignIn> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,10 +48,6 @@ class SignUp extends StatelessWidget {
       ),
       Padding(
         padding: const EdgeInsets.only(left: 20, right: 20),
-        child: TextfieldType(Icons.account_circle, 'USERNAME'),
-      ),
-      Padding(
-        padding: const EdgeInsets.only(left: 20, right: 20, top: 5),
         child: TextfieldType(Icons.email, 'EMAIL'),
       ),
       Padding(
@@ -32,7 +55,7 @@ class SignUp extends StatelessWidget {
         child: TextfieldType(Icons.vpn_key, 'PASSWORD'),
       ),
       Padding(
-        padding: const EdgeInsets.only(left: 20, right: 20, top: 70),
+        padding: const EdgeInsets.only(left: 20, right: 20, top: 60),
         child: GestureDetector(
           onTap: () {
             Navigator.push(
@@ -42,7 +65,7 @@ class SignUp extends StatelessWidget {
           },
           child: Container(
               child: Center(
-                child: Text('SIGN UP',
+                child: Text('LOGIN',
                     style: TextStyle(color: Colors.white, fontSize: 20)),
               ),
               height: 40,
@@ -56,23 +79,19 @@ class SignUp extends StatelessWidget {
         ),
       ),
       Padding(
-        padding: EdgeInsets.only(top: 70, left: 55),
+        padding: EdgeInsets.only(top: 140, left: 110),
         child: Row(
           children: [
-            Text('Already have an account?', style: TextStyle(fontSize: 17)),
+            Text('New here?', style: TextStyle(fontSize: 17)),
             GestureDetector(
                 onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => SignIn(
-                                title: '',
-                              )));
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => SignUp()));
                 },
                 child: Container(
                   decoration: BoxDecoration(color: Colors.transparent),
                   child: Text(
-                    ' Sign in',
+                    ' Sign up',
                     style: TextStyle(color: Colors.purple, fontSize: 17),
                   ),
                 ))
