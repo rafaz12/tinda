@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:tinda/ui/chatrep.dart';
 
 class ChatCard extends StatelessWidget {
   String name, text, time;
@@ -8,6 +9,13 @@ class ChatCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
+      onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => ChatRep(name, text, time),
+            ));
+      },
       leading: CircleAvatar(radius: 25),
       trailing: Text(time),
       title: Text(name,

@@ -6,14 +6,14 @@ import 'package:tinda/ui/matchesUI.dart';
 import 'package:tinda/ui/profileUI.dart';
 import 'package:tinda/ui/profile_page.dart';
 
-class NavigationBar extends StatefulWidget {
-  const NavigationBar({Key? key}) : super(key: key);
+class NavigationBarr extends StatefulWidget {
+  const NavigationBarr({Key? key}) : super(key: key);
 
   @override
-  State<NavigationBar> createState() => _NavigationBarState();
+  State<NavigationBarr> createState() => _NavigationBarrState();
 }
 
-class _NavigationBarState extends State<NavigationBar> {
+class _NavigationBarrState extends State<NavigationBarr> {
   int currentIndex = 0;
   final screens = [
     Profile(),

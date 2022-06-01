@@ -60,7 +60,7 @@ class _SignInState extends State<SignIn> {
           onTap: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => NavigationBar()),
+              MaterialPageRoute(builder: (context) => NavigationBarr()),
             );
           },
           child: Container(

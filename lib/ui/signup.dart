@@ -37,7 +37,7 @@ class SignUp extends StatelessWidget {
           onTap: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => NavigationBar()),
+              MaterialPageRoute(builder: (context) => NavigationBarr()),
             );
           },
           child: Container(
