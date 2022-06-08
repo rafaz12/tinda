@@ -1,5 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:tinda/ui/chatpage.dart';
 import 'package:tinda/ui/matchesUI.dart';
@@ -16,7 +18,7 @@ class NavigationBarr extends StatefulWidget {
 class _NavigationBarrState extends State<NavigationBarr> {
   int currentIndex = 0;
   final screens = [
-    Profile(),
+    Profile(new File(' ')),
     Matches(),
     ChatPage(),
     ProfilePage(),

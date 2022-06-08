@@ -5,7 +5,7 @@ import 'package:tinda/ui/profileUI.dart';
 
 class UserProfile extends StatefulWidget {
   String name, occupation;
-  List<AssetImage> images;
+  List<Image> images;
   int age;
   bool swiped = false;
   UserProfile(
@@ -46,7 +46,7 @@ class _UserProfileState extends State<UserProfile> {
                   width: 350,
                   decoration: BoxDecoration(
                     image: DecorationImage(
-                        image: widget.images[i], fit: BoxFit.cover),
+                        image: widget.images[i].image, fit: BoxFit.cover),
                     borderRadius: BorderRadius.circular(16),
                   ))),
           // On tap goes to previous pic and swipe right skips

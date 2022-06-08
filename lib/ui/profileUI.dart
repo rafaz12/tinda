@@ -1,5 +1,7 @@
 // ignore_for_file: file_names, unnecessary_new
 
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tinda/components/navigation_bar.dart';
@@ -8,32 +10,38 @@ import 'package:tinda/ui/userprofile.dart';
 import 'matchesUI.dart';
 
 class Profile extends StatefulWidget {
-  Profile();
+  File image;
+  Profile(this.image);
 
-  ProfileState createState() => ProfileState();
+  @override
+  State<StatefulWidget> createState() {
+    return ProfileState(image);
+  }
 }
 
 class ProfileState extends State<Profile> {
+  File image;
+  ProfileState(this.image);
   int j = 0;
   List<UserProfile> userProfiles = [
     UserProfile(
-      images: <AssetImage>[
-        AssetImage('assets/images/rafa.jpeg'),
-        AssetImage('assets/images/zyzz.jpeg')
+      images: <Image>[
+        Image.asset('assets/images/rafa.jpeg'),
+        Image.asset('assets/images/zyzz.jpeg'),
       ],
       name: 'Rafa',
       age: 21,
       occupation: 'Professor',
       swiped: false,
     ),
-    UserProfile(images: <AssetImage>[
-      AssetImage('assets/images/depp.jpg'),
-      AssetImage('assets/images/depp2.jpg')
+    UserProfile(images: <Image>[
+      Image.asset('assets/images/depp.jpg'),
+      Image.asset('assets/images/depp2.jpg'),
     ], name: 'Depp', age: 52, occupation: 'Actor', swiped: false),
     UserProfile(
-      images: <AssetImage>[
-        AssetImage('assets/images/stijni2.png'),
-        AssetImage('assets/images/stijni1.png')
+      images: <Image>[
+        Image.asset('assets/images/stijni2.png'),
+        Image.asset('assets/images/stijni1.png')
       ],
       name: 'Stijn',
       age: 20,
@@ -41,11 +49,11 @@ class ProfileState extends State<Profile> {
       swiped: false,
     ),
     UserProfile(
-      images: <AssetImage>[
-        AssetImage('assets/images/tony1.jpeg'),
-        AssetImage('assets/images/tony2.jpeg'),
-        AssetImage('assets/images/tony3.jpeg'),
-        AssetImage('assets/images/tony4.jpeg')
+      images: <Image>[
+        Image.asset('assets/images/tony1.jpeg'),
+        Image.asset('assets/images/tony2.jpeg'),
+        Image.asset('assets/images/tony3.jpeg'),
+        Image.asset('assets/images/tony4.jpeg')
       ],
       name: 'Tony',
       age: 21,
@@ -56,7 +64,8 @@ class ProfileState extends State<Profile> {
 
   @override
   Widget build(BuildContext context) {
-    final swiped = ValueNotifier<bool>(userProfiles[j].swiped);
+    if (image != null && !userProfiles[0].images.contains(image))
+      userProfiles[0].images.add(Image.file(image));
     return Scaffold(
         appBar: AppBar(
             foregroundColor: Colors.black,

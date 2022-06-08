@@ -1,10 +1,25 @@
-import 'dart:math';
+import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:tinda/ui/profileUI.dart';
+import 'package:tinda/ui/settings.dart';
 
-class ProfilePage extends StatelessWidget {
-  const ProfilePage({Key? key}) : super(key: key);
+class ProfilePage extends StatefulWidget {
+  @override
+  State<ProfilePage> createState() => _ProfilePageState();
+}
+
+class _ProfilePageState extends State<ProfilePage> {
+  File? image;
+
+  Future pickImage() async {
+    final image = await ImagePicker().pickImage(source: ImageSource.gallery);
+    if (image == null) return;
+    final imageTemporary = File(image.path);
+    setState(() => this.image = imageTemporary);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -64,9 +79,15 @@ class ProfilePage extends StatelessWidget {
                   children: [
                     Column(mainAxisSize: MainAxisSize.min, children: [
                       ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Picture()),
+                            );
+                          },
                           child: Icon(
-                            Icons.settings,
+                            Icons.add,
                             color: Colors.purple,
                           ),
                           style: ElevatedButton.styleFrom(
@@ -78,7 +99,7 @@ class ProfilePage extends StatelessWidget {
                       SizedBox(
                         height: 15,
                       ),
-                      Text('SETTINGS',
+                      Text('ADD PIC',
                           style: TextStyle(fontWeight: FontWeight.bold)),
                     ]),
                     Column(
@@ -88,7 +109,14 @@ class ProfilePage extends StatelessWidget {
                           height: 75,
                           width: 75,
                           child: ElevatedButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                pickImage();
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => Profile(image!),
+                                    ));
+                              },
                               child: Icon(
                                 Icons.edit,
                                 size: 30,
