@@ -1,12 +1,10 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'dart:io';
-
 import 'package:flutter/material.dart';
-import 'package:tinda/ui/chatpage.dart';
-import 'package:tinda/ui/matchesUI.dart';
-import 'package:tinda/ui/profileUI.dart';
-import 'package:tinda/ui/profile_page.dart';
+import 'package:tinda/screens/chatpage.dart';
+import 'package:tinda/screens/matchesUI.dart';
+import 'package:tinda/screens/profileUI.dart';
+import 'package:tinda/screens/profile_page.dart';
 
 class NavigationBarr extends StatefulWidget {
   const NavigationBarr({Key? key}) : super(key: key);
@@ -18,7 +16,7 @@ class NavigationBarr extends StatefulWidget {
 class _NavigationBarrState extends State<NavigationBarr> {
   int currentIndex = 0;
   final screens = [
-    Profile(new File(' ')),
+    Profile(),
     Matches(),
     ChatPage(),
     ProfilePage(),
@@ -40,7 +38,6 @@ class _NavigationBarrState extends State<NavigationBarr> {
             currentIndex = index;
             Colors.black;
           }),
-          // ignore: prefer_const_literals_to_create_immutables
           items: [
             BottomNavigationBarItem(
               icon: Icon(Icons.home),

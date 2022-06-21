@@ -1,57 +1,13 @@
-// ignore_for_file: file_names
-
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tinda/bloc/image_bloc.dart';
+import 'package:tinda/components/logo.dart';
 import 'package:tinda/components/navigation_bar.dart';
+import 'package:tinda/main.dart';
 import 'package:tinda/components/textfield_type.dart';
-import 'bloc/chat_bloc.dart';
-import 'bloc/profile_bloc.dart';
-import 'components/logo.dart';
-import 'screens/signup.dart';
 
-void main() {
-  runApp(const MyApp());
-}
+class SignUp extends StatelessWidget {
+  const SignUp({Key? key}) : super(key: key);
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(
-          create: (context) => ImageBloc(),
-        ),
-        BlocProvider(
-          create: (context) => ProfileBloc(),
-        ),
-        BlocProvider(
-          create: (context) => ChatBloc(),
-        ),
-      ],
-      child: MaterialApp(
-        theme: ThemeData(
-          primarySwatch: Colors.purple,
-        ),
-        home: const SignIn(title: ''),
-      ),
-    );
-  }
-}
-
-class SignIn extends StatefulWidget {
-  const SignIn({Key? key, required this.title}) : super(key: key);
-
-  final String title;
-
-  @override
-  State<SignIn> createState() => _SignInState();
-}
-
-class _SignInState extends State<SignIn> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,6 +20,10 @@ class _SignInState extends State<SignIn> {
       ),
       Padding(
         padding: const EdgeInsets.only(left: 20, right: 20),
+        child: TextfieldType(Icons.account_circle, 'USERNAME'),
+      ),
+      Padding(
+        padding: const EdgeInsets.only(left: 20, right: 20, top: 5),
         child: TextfieldType(Icons.email, 'EMAIL'),
       ),
       Padding(
@@ -71,7 +31,7 @@ class _SignInState extends State<SignIn> {
         child: TextfieldType(Icons.vpn_key, 'PASSWORD'),
       ),
       Padding(
-        padding: const EdgeInsets.only(left: 20, right: 20, top: 60),
+        padding: const EdgeInsets.only(left: 20, right: 20, top: 70),
         child: GestureDetector(
           onTap: () {
             Navigator.push(
@@ -81,7 +41,7 @@ class _SignInState extends State<SignIn> {
           },
           child: Container(
               child: Center(
-                child: Text('LOGIN',
+                child: Text('SIGN UP',
                     style: TextStyle(color: Colors.white, fontSize: 20)),
               ),
               height: 40,
@@ -95,19 +55,23 @@ class _SignInState extends State<SignIn> {
         ),
       ),
       Padding(
-        padding: EdgeInsets.only(top: 140, left: 110),
+        padding: EdgeInsets.only(top: 70, left: 55),
         child: Row(
           children: [
-            Text('New here?', style: TextStyle(fontSize: 17)),
+            Text('Already have an account?', style: TextStyle(fontSize: 17)),
             GestureDetector(
                 onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => SignUp()));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => SignIn(
+                                title: '',
+                              )));
                 },
                 child: Container(
                   decoration: BoxDecoration(color: Colors.transparent),
                   child: Text(
-                    ' Sign up',
+                    ' Sign in',
                     style: TextStyle(color: Colors.purple, fontSize: 17),
                   ),
                 ))
